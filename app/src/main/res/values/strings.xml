@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Number System</string>
+
+    <string-array name="numberSystem">
+        <item>Decimal</item>
+        <item>Binary</item>
+        <item>Octal</item>
+        <item>Hexa-Decimal</item>
+    </string-array>
+
+</resources>
