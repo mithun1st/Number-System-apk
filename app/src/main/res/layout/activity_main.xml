@@ -26,41 +26,59 @@
             android:layout_width="match_parent"
             android:layout_height="0dp">
 
-            <Spinner
-                android:id="@+id/sp"
-                android:layout_marginTop="10dp"
+
+
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_marginBottom="12dp"
+                    android:weightSum="4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/spinner_style"
+                        android:layout_weight="3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+                        <Spinner
+                            android:id="@+id/sp"
+                            android:popupBackground="#DFDFDF"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/clear"
+                        android:text="Clear"
+                        android:backgroundTint="#FF5252"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"/>
+
+
+                </LinearLayout>
+
+
+
+            <EditText
+                android:id="@+id/et"
+                android:textSize="22sp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/edit_text"
+                android:hint="Input Here"
+                android:textStyle="bold"
+                android:padding="6dp"
+                android:gravity="center"
+                android:textColorHint="#C8C8C8"
+                android:inputType="numberDecimal"
                 android:layout_marginLeft="10dp"
-                android:popupBackground="#DFDFDF"
-                android:layout_marginBottom="10dp"
-                android:layout_width="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
-            <RelativeLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/et"
-                    android:textSize="22sp"
-                    android:hint="Input Here . . ."
-                    android:textStyle="bold"
-                    android:textColor="#FFFFFF"
-                    android:textColorHint="#C8C8C8"
-                    android:inputType="numberDecimal"
-                    android:layout_marginLeft="10dp"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"/>
-
-                <Button
-                    android:layout_alignParentRight="true"
-                    android:text="Clear"
-                    android:backgroundTint="#FF5252"
-                    android:layout_marginRight="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-            </RelativeLayout>
         </LinearLayout>
 
         <RelativeLayout
@@ -69,7 +87,7 @@
             android:layout_weight="1">
 
             <Button
-                android:id="@+id/convertButton"
+                android:id="@+id/convert"
                 android:text="Convert To"
                 android:textSize="24dp"
                 android:layout_centerInParent="true"
@@ -206,9 +224,6 @@
                 android:layout_height="wrap_content"/>
 
         </LinearLayout>
-
-
-
 
     </LinearLayout>
 

@@ -8,6 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="displayTitle">#008F62</color>
+    <color name="displayTitle">#008E5B</color>
     <color name="displayLayout">#045493</color>
+    <color name="actioBar">#23BF00</color>
 </resources>

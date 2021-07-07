@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Number System</string>
+    <string name="app_name">\tNumber System</string>
 
     <string-array name="numberSystem">
         <item>Decimal</item>
