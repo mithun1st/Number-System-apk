@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".feedback">
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="100dp"
+        android:textColor="#FFF"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:background="#000BFF"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:text="Send Your Opinion To Us"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="Message:"/>
+
+    <EditText
+        android:id="@+id/et"
+        android:gravity="start"
+        android:background="#DCE2FF"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:inputType="text"/>
+
+    <Button
+        android:id="@+id/b"
+        android:layout_marginTop="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:drawableLeft="@drawable/ic_baseline_feedback_24"
+        android:backgroundTint="#068064"
+        android:text="feedback"/>
+
+</LinearLayout>

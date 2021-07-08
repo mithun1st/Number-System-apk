@@ -8,7 +8,7 @@
         android:icon="@drawable/ic_baseline_share_24"
         app:showAsAction="never"/>
     <item
-        android:id="@+id/MenufeedBack"
+        android:id="@+id/menufeedBack"
         android:title="Feedback"
         android:icon="@drawable/ic_baseline_feedback_24"
         app:showAsAction="never"/>

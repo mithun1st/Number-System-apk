@@ -2,10 +2,17 @@ package com.example.numbersystem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.InputType;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,12 +27,16 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Spinner sp;
     private Button convert,clear;
     private EditText input;
     private TextView dec,bin,oct,hex;
+
+    public String system;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,8 +79,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String s=numSystem[position];
-                Toast.makeText(MainActivity.this,s,Toast.LENGTH_SHORT).show();
+                //input section enable/disable
+                if(sp.getSelectedItemPosition()==0){
+                    input.setEnabled(false);
+                }
+                else {
+                    input.setEnabled(true);
+                }
+
+                //set input type
+                system=numSystem[position];
+                if(!system.matches("Hexadecimal")){
+                    input.setInputType(InputType.TYPE_CLASS_NUMBER);
+                }
+                else {
+                    input.setInputType(InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
+                }
+
+                //clear field and display
+                input.setText("");
+                clearDisplay();
             }
 
             @Override
@@ -83,17 +112,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        //convert
+        //convert button
         if(v.getId()==R.id.convert){
-            String s=sp.getSelectedItem().toString();
-            Toast.makeText(MainActivity.this,s,Toast.LENGTH_SHORT).show();
+            if(sp.getSelectedItemPosition()==0){
+                Toast.makeText(MainActivity.this,"Select The Item First",Toast.LENGTH_SHORT).show();
+            }
+            else {
+                calculate();
+            }
         }
 
-
-        //clear
+        //clear button
         if(v.getId()==R.id.clear){
+            input.setText("");
             sp.setSelection(0);
             clearDisplay();
+            Toast.makeText(MainActivity.this,"Reset",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -109,18 +143,132 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId()==R.id.menuShare){
-            Toast.makeText(MainActivity.this,"workding",Toast.LENGTH_SHORT).show();
+        if(item.getItemId()==R.id.menuAbout){
+            dialog();
         }
+        if(item.getItemId()==R.id.menuShare){
+            Intent is=new Intent(Intent.ACTION_SEND);
+            is.setType("text/plain");
+
+            is.putExtra(Intent.EXTRA_SUBJECT,"Number System Share");
+            is.putExtra(Intent.EXTRA_TEXT, "*easy to use.\n*fully free.\ngood ui\n*less bug.");
+
+            startActivity(Intent.createChooser(is,"Share This Application Via . . ."));
+        }
+
+        if(item.getItemId()==R.id.menufeedBack){
+            Intent i = new Intent(MainActivity.this, feedback.class);
+            startActivity(i);
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
 
-    //clear display
+//----------------------------------------------------------------------------------FUNCTION
+
+    //clear display function
     public void clearDisplay(){
         dec.setText("- - - - -");
         bin.setText("- - - - -");
         oct.setText("- - - - -");
         hex.setText("- - - - -");
+    }
+
+
+    //show display function
+    public void showDisplay(String a,String b, String c, String d){
+        dec.setText(a);
+        bin.setText(b);
+        oct.setText(c);
+        hex.setText(d);
+    }
+
+    //convert
+    public void calculate(){
+        String sdec=null, sbin=null, soct=null,shex=null;
+        try{
+            switch (system) {
+                case "Decimal":
+                    sdec=input.getText().toString();
+                    sbin=Integer.toBinaryString(Integer.parseInt(input.getText().toString()));
+                    soct=Integer.toOctalString(Integer.parseInt(input.getText().toString()));
+                    shex=Integer.toHexString(Integer.parseInt(input.getText().toString())).toUpperCase();
+                    break;
+
+                case "Binary":
+                    sdec=String.valueOf(Integer.parseInt(input.getText().toString(),2));
+                    sbin=input.getText().toString();
+                    soct=Integer.toOctalString(Integer.parseInt(input.getText().toString(), 2));
+                    shex=Integer.toHexString(Integer.parseInt(input.getText().toString(), 2)).toUpperCase();
+                    break;
+
+                case "Octal":
+                    sdec=String.valueOf(Integer.parseInt(input.getText().toString(),8));
+                    sbin=Integer.toBinaryString(Integer.parseInt(input.getText().toString(), 8));
+                    soct=input.getText().toString();
+                    shex=Integer.toHexString(Integer.parseInt(input.getText().toString(), 8)).toUpperCase();
+                    break;
+
+                case "Hexadecimal":
+                    sdec=String.valueOf(Integer.parseInt(input.getText().toString(),16));
+                    sbin=Integer.toBinaryString(Integer.parseInt(input.getText().toString(), 16));
+                    soct=Integer.toOctalString(Integer.parseInt(input.getText().toString(), 16));
+                    shex=input.getText().toString().toUpperCase();
+                    break;
+            }
+            input.setEnabled(false);
+            input.setEnabled(true);
+            showDisplay(sdec,sbin,soct,shex);
+        }
+        catch (Exception e){
+            input.setError("Invalid "+system+" Number !");
+            Toast.makeText(MainActivity.this,e.toString(),Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    //dialog
+    public void dialog(){
+        AlertDialog ad;
+        AlertDialog.Builder ab=new AlertDialog.Builder(this);
+
+        ab.setIcon(R.drawable.ic_baseline_person_search_24);
+        ab.setTitle("Build & Develop by");
+        //ab.setMessage("");
+        ab.setCancelable(false);
+
+        //
+        LayoutInflater li=getLayoutInflater();
+        View v= (View) li.inflate(R.layout.about,findViewById(R.id.cv));
+        ab.setView(v);
+        //
+
+        ab.setPositiveButton("Exit", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+//
+//
+//        ab.setNeutralButton("Nu+", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                dialog.cancel();
+//            }
+//        });
+
+
+        ab.setNegativeButton("Close", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        ad=ab.create();
+        ad.show();
+
     }
 }

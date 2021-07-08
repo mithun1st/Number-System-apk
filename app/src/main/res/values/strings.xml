@@ -2,10 +2,11 @@
     <string name="app_name">\tNumber System</string>
 
     <string-array name="numberSystem">
+        <item>- Select Item -</item>
         <item>Decimal</item>
         <item>Binary</item>
         <item>Octal</item>
-        <item>Hexa-Decimal</item>
+        <item>Hexadecimal</item>
     </string-array>
 
 </resources>

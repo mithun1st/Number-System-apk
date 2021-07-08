@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#EDEDED"
     android:orientation="vertical"
     android:padding="10dp"
     android:weightSum="5"
@@ -44,7 +45,7 @@
                         android:layout_height="wrap_content">
                         <Spinner
                             android:id="@+id/sp"
-                            android:popupBackground="#DFDFDF"
+                            android:popupBackground="#D8DCFF"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"/>
                     </LinearLayout>
@@ -52,7 +53,7 @@
                     <Button
                         android:id="@+id/clear"
                         android:text="Clear"
-                        android:backgroundTint="#FF5252"
+                        android:backgroundTint="#FF5151"
                         android:layout_marginRight="10dp"
                         android:layout_width="0dp"
                         android:layout_weight="1"
@@ -73,7 +74,6 @@
                 android:padding="6dp"
                 android:gravity="center"
                 android:textColorHint="#C8C8C8"
-                android:inputType="numberDecimal"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_width="match_parent"
@@ -109,7 +109,10 @@
         android:orientation="vertical"
         android:layout_weight="3"
         android:weightSum="4"
-        android:padding="15dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
         android:background="@drawable/display_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp">
@@ -133,6 +136,7 @@
             <TextView
                 android:id="@+id/decimalDisplay"
                 android:text="- - - - -"
+                android:textIsSelectable="true"
                 android:textStyle="bold"
                 android:textSize="25sp"
                 android:textColor="#2B2B2B"
@@ -161,6 +165,7 @@
             <TextView
                 android:id="@+id/binDisplay"
                 android:text="- - - - -"
+                android:textIsSelectable="true"
                 android:textStyle="bold"
                 android:textSize="25sp"
                 android:textColor="#2B2B2B"
@@ -189,6 +194,7 @@
             <TextView
                 android:id="@+id/octalDisplay"
                 android:text="- - - - -"
+                android:textIsSelectable="true"
                 android:textStyle="bold"
                 android:textSize="25sp"
                 android:textColor="#2B2B2B"
@@ -207,7 +213,7 @@
             android:layout_height="0dp">
 
             <TextView
-                android:text="Hexadecilam:"
+                android:text="Hexadecimal:"
                 android:textSize="18sp"
                 android:layout_marginLeft="20dp"
                 android:textColor="@color/displayTitle"
@@ -216,6 +222,7 @@
             <TextView
                 android:id="@+id/hexaDisplay"
                 android:text="- - - - -"
+                android:textIsSelectable="true"
                 android:textStyle="bold"
                 android:textSize="25sp"
                 android:textColor="#2B2B2B"
