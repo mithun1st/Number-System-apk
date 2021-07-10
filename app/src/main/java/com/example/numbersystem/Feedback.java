@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class feedback extends AppCompatActivity {
+public class Feedback extends AppCompatActivity {
 
     private Button b;
     private EditText et;
@@ -17,6 +17,9 @@ public class feedback extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feedback);
+
+        //hide actionbar
+        getSupportActionBar().hide();
 
         b=findViewById(R.id.b);
         et=findViewById(R.id.et);
@@ -32,7 +35,7 @@ public class feedback extends AppCompatActivity {
 
                 ifb.putExtra(Intent.EXTRA_EMAIL,new String[]{"mithun.2121@yahoo.com","m2n1st@gmail.com"});
 
-                startActivity(Intent.createChooser(ifb,"Feedback . . ."));
+                startActivity(Intent.createChooser(ifb,"Feedback Us"));
             }
         });
 

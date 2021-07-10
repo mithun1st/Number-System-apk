@@ -15,32 +15,32 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:paddingLeft="12dp"
-            android:paddingRight="12dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
             android:gravity="center"
             android:background="#4C63FF"
             android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:src="@drawable/mithun"
                 android:scaleType="centerCrop"
-                android:layout_width="200dp"
+                android:layout_width="210dp"
                 android:layout_height="200dp"/>
 
             <TextView
-                android:paddingBottom="8dp"
-                android:paddingTop="8dp"
-                android:text="Mahadi Hassan MIHTUN"
-                android:textStyle="bold"
-                android:textSize="28sp"
-                android:gravity="center"
-                android:textColor="#000943"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="7dp"
+                android:paddingBottom="4dp"
+                android:text="Mahadi Hassan\nMIHTUN"
+                android:textColor="#000B51"
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:paddingBottom="5dp"
@@ -48,7 +48,7 @@
                 android:text="mithun.2121@yahoo.com"
                 android:textStyle="normal"
                 android:autoLink="email"
-                android:textSize="22sp"
+                android:textSize="23sp"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -59,7 +59,7 @@
                 android:autoLink="web"
                 android:textSize="20sp"
                 android:gravity="center"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
                 android:text="http://mithun1st.blogspot.com/"
@@ -67,7 +67,7 @@
                 android:autoLink="web"
                 android:textSize="20sp"
                 android:gravity="center"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
         </LinearLayout>

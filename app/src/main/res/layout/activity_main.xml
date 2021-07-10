@@ -70,7 +70,6 @@
                 android:layout_marginTop="4dp"
                 android:background="@drawable/edit_text"
                 android:hint="Input Here"
-                android:textStyle="bold"
                 android:padding="6dp"
                 android:gravity="center"
                 android:textColorHint="#C8C8C8"
@@ -90,6 +89,7 @@
                 android:id="@+id/convert"
                 android:text="Convert To"
                 android:textSize="24dp"
+                
                 android:layout_centerInParent="true"
                 android:textStyle="bold"
                 android:layout_marginBottom="20dp"

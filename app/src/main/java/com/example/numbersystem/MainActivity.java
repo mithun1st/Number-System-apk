@@ -1,12 +1,9 @@
 package com.example.numbersystem;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
@@ -17,17 +14,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -46,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //support get action bar
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setIcon(R.drawable.home_icon);
+        getSupportActionBar().setIcon(R.drawable.action_bar_icon);
 
 
         //action bar color
@@ -67,6 +60,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //button click listener
         convert.setOnClickListener(this);
         clear.setOnClickListener(this);
+
+        clear.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                sp.setSelection(0);
+                input.setText("");
+                clearDisplay();
+                Toast.makeText(MainActivity.this,"Reset All",Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
 
 
         //spinner database
@@ -125,9 +129,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //clear button
         if(v.getId()==R.id.clear){
             input.setText("");
-            sp.setSelection(0);
             clearDisplay();
-            Toast.makeText(MainActivity.this,"Reset",Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this,"Clear Display",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -143,21 +146,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId()==R.id.menuAscii){
+            Intent i=new Intent(MainActivity.this, Ascii.class);
+            startActivity(i);
+        }
+
         if(item.getItemId()==R.id.menuAbout){
             dialog();
         }
         if(item.getItemId()==R.id.menuShare){
-            Intent is=new Intent(Intent.ACTION_SEND);
-            is.setType("text/plain");
-
-            is.putExtra(Intent.EXTRA_SUBJECT,"Number System Share");
-            is.putExtra(Intent.EXTRA_TEXT, "*easy to use.\n*fully free.\ngood ui\n*less bug.");
-
-            startActivity(Intent.createChooser(is,"Share This Application Via . . ."));
+            share();
         }
 
         if(item.getItemId()==R.id.menufeedBack){
-            Intent i = new Intent(MainActivity.this, feedback.class);
+            Intent i = new Intent(MainActivity.this, Feedback.class);
             startActivity(i);
         }
 
@@ -219,6 +221,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             input.setEnabled(false);
             input.setEnabled(true);
+            input.setText(input.getText().toString().toUpperCase());
             showDisplay(sdec,sbin,soct,shex);
         }
         catch (Exception e){
@@ -228,12 +231,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
+    //share
+    public void share(){
+        Intent is=new Intent(Intent.ACTION_SEND);
+        is.setType("text/plain");
+
+        is.putExtra(Intent.EXTRA_SUBJECT,"Number System Share");
+        is.putExtra(Intent.EXTRA_TEXT, "*easy to use.\n*fully free.\ngood ui\n*less bug.");
+
+        startActivity(Intent.createChooser(is,"Share Application Via"));
+    }
+
+
     //dialog
     public void dialog(){
         AlertDialog ad;
         AlertDialog.Builder ab=new AlertDialog.Builder(this);
 
-        ab.setIcon(R.drawable.ic_baseline_person_search_24);
+        ab.setIcon(R.drawable.ic_baseline_person_24);
         ab.setTitle("Build & Develop by");
         //ab.setMessage("");
         ab.setCancelable(false);
@@ -269,6 +284,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         ad=ab.create();
         ad.show();
-
     }
 }

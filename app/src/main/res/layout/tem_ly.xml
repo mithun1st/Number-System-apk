@@ -7,12 +7,13 @@
     <TextView
         android:id="@+id/tem_tv"
         android:text="Hexa-Decimal"
-        android:gravity="left"
-        android:textSize="27sp"
+        android:gravity="center_vertical"
+        android:textSize="24sp"
         android:textStyle="bold"
         android:paddingLeft="10dp"
+        android:paddingBottom="2dp"
+        android:paddingTop="2dp"
         android:textColor="#001751"
-        android:paddingRight="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
